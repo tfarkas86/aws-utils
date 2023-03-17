@@ -11,4 +11,4 @@ To use this utility, you must create a file at `~/.aws/ec2-ssh.json` that links 
   -h: Host, from ~/.ssh/config
   -t: Instance type, see AWS EC2 documentation. E.g., 'r5.xlarge'
   
- `stop-ec2` is in developement. Modify the source code to target an EC2 instance by ID. 
+ `stop-ec2` takes only the `-h` argument. 
