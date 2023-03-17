@@ -13,4 +13,4 @@ To use this utility, you must create a file at `~/.aws/ec2-ssh.json` that links 
   
  `stop-ec2` takes only the `-h` argument. 
  
- I recommend cloning this repository to `~/.aws/` or `~/.ssh/`, then symlinking the scripts to somewhere in your PATH. 
+ I recommend cloning this repository to `~/.aws/` or `~/.ssh/`, then symlinking the scripts to somewhere in your PATH. Also, you can set defaults from within the scripts. 
