@@ -13,18 +13,19 @@ i. A properly configured [AWS CLI](https://aws.amazon.com/cli/) utility.
 ii. A bash shell.
 
 1. Clone this repository to `~/.aws/`. 
-2. Symlink each script somewhere in your PATH. For example: 
-
+2. Change permissions to make executable:
 ```
-ln -s /Users/tfarkas86/.aws/aws-utils/start-ec2 /usr/local/bin/start-ec2
-ln -s /Users/tfarkas86/.aws/aws-utils/stop-ec2 /usr/local/bin/stop-ec2
-```  
-
-3. Modify the scrips to contain the appropriate defaults for Host and Instance Type. 
-4. Create a file `ec2-ssh.json` that maps Instance IDs to SSH Hosts in your `.ssh` folder. Follow [the template provided](https://github.com/tfarkas86/aws-utils/blob/main/ec2-ssh.json). 
-
+sudo chmod 755 <path to home folder>/.aws/aws-utils/start-ec2
+sudo chmod 755 <path to home folder>/.aws/aws-utils/stop-ec2
+```
+3. Symlink each script somewhere in your PATH. For example: 
+```
+sudo ln -s <absolute path to home folder>/.aws/aws-utils/start-ec2 /usr/local/bin/start-ec2
+sudo ln -s <absolute path to home folder>/.aws/aws-utils/stop-ec2 /usr/local/bin/stop-ec2
+```
+4. Modify the scrips to contain the appropriate defaults for Host and Instance Type. 
+5. Create a file `ec2-ssh.json` that maps Instance IDs to SSH Hosts in your `.ssh` folder. Follow [the template provided](https://github.com/tfarkas86/aws-utils/blob/main/ec2-ssh.json). 
 ### Usage
-
 `start-ec2` takes two arguments:  
   -h: Host. Not required if default is set in script. From your ~/.ssh/config  
   -t: Instance type. Not required, but will change your instance type if you desire. See AWS EC2 documentation. E.g., 'r5.xlarge'.
