@@ -6,7 +6,12 @@ Utilities for working with AWS resources.
 These simple utilities are designed to solve the basic problem that IP addresses for EC2 instances on AWS change whenever they are restarted, so that accessing them may require a bit of fuss. However, because an Instance ID does not change (unless terminated), it's possible to start an instance, harvest the new IP address, and swap it out with the old one wherever it's needed with AWS CLI. My preferred approach to accessing EC2 is by leveraging the ssh config file, which the start-ec2 utility automatically updates, facilitating access after the instance is restarted. 
 
 ### Installation 
- 
+
+Prerequisites: 
+
+i. A properly configured [AWS CLI](https://aws.amazon.com/cli/) utility. 
+ii. A bash shell.
+
 1. Clone this repository to `~/.aws/`. 
 2. Symlink each script somewhere in your PATH. For example: 
 
