@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # defaults go here
-INSTANCE_ID=i-0c3f8d38432e5eb1d
+HOST=aws-personal
 
 while getopts 'h:' opt; do
   case "$opt" in

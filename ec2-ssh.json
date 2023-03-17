@@ -2,7 +2,7 @@
   "ssh-host": {
     "aws-personal": {
       "instance-id": "i-003f8d48432e8eb1d"
-    }
+    },
     "aws-gpu1": {
       "instance-id": "i-0dlkjh352j2lk3nhl"
     }
