@@ -13,6 +13,8 @@ i. A properly configured [AWS CLI](https://aws.amazon.com/cli/) utility.
 ii. A properly configured `~/.ssh/config` file.  
 iii. A bash shell. 
 
+Then do:  
+
 1. Clone this repository to `~/.aws/`. 
 2. Change permissions to make executable:
 ```
