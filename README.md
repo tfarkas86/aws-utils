@@ -30,7 +30,7 @@ sudo ln -s <absolute path to home folder>/.aws/aws-utils/stop-ec2 /usr/local/bin
 5. Create a file `~/.aws/ec2-ssh.json` that maps Instance IDs to SSH Hosts in your `.ssh` folder. Follow [the template provided](https://github.com/tfarkas86/aws-utils/blob/main/ec2-ssh.json). 
 ### Usage
 `start-ec2` takes two arguments:  
-  -h: Host. Not required if default is set in script. From your `~/.ssh/config`. 
+  -h: Host. Not required if default is set in script. From your `~/.ssh/config`.  
   -t: Instance type. Not required, but will change your instance type if you desire. See AWS EC2 documentation. E.g., 'r5.xlarge'.
   
  `stop-ec2` takes only the `-h` argument. 
