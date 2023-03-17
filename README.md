@@ -8,9 +8,9 @@ These simple utilities are designed to solve the basic problem that IP addresses
 To use this utility, you must create a file at `~/.aws/ec2-ssh.json` that links EC2 Instance IDs to Hosts in `~/.ssh/config/`. See the example included in this repository. 
  
 `start-ec2` takes two arguments:  
-  -h: Host, from ~/.ssh/config  
-  -t: Instance type, see AWS EC2 documentation. E.g., 'r5.xlarge'
+  -h: Host. Not required if default is set in script. From your ~/.ssh/config  
+  -t: Instance type. Not required, but will change your instance type if you desire. See AWS EC2 documentation. E.g., 'r5.xlarge'.
   
  `stop-ec2` takes only the `-h` argument. 
  
- I recommend cloning this repository to `~/.aws/` or `~/.ssh/`, then symlinking the scripts to somewhere in your PATH. Also, you can set defaults from within the scripts. 
+ I recommend cloning this repository to `~/.aws/` or `~/.ssh/`, then symlinking the scripts to somewhere in your PATH. Also, none of the arguments are required if you set defaults from within the scripts. 
