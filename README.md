@@ -9,9 +9,9 @@ These simple utilities are designed to solve the basic problem that IP addresses
 
 Prerequisites: 
 
-i. A properly configured [AWS CLI](https://aws.amazon.com/cli/) utility. 
-ii. A properly configured `~/.ssh/config` file. 
-iii. A bash shell.
+i. A properly configured [AWS CLI](https://aws.amazon.com/cli/) utility.  
+ii. A properly configured `~/.ssh/config` file.  
+iii. A bash shell. 
 
 1. Clone this repository to `~/.aws/`. 
 2. Change permissions to make executable:
