@@ -18,7 +18,8 @@ These simple utilities are designed to solve the basic problem that IP addresses
 
 ```
 ln -s /Users/tfarkas86/.aws/aws-utils/start-ec2 /usr/bin/local/start-ec2
+ln -s /Users/tfarkas86/.aws/aws-utils/stop-ec2 /usr/bin/local/stop-ec2
 ```  
 
 3. Modify the scrips to contain the appropriate defaults for Host and Instance Type. 
-4. Create a file `ec2-ssh.json` in your `.ssh` folder. Follow the template provided in this repository. 
+4. Create a file `ec2-ssh.json` in your `.ssh` folder. Follow [the template provided](https://github.com/tfarkas86/aws-utils/blob/main/ec2-ssh.json). 
