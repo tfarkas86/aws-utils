@@ -1,0 +1,8 @@
+{
+        "ssh-host": {
+                "aws-personal": {
+                         "instance-id": "i-0c3f8d38432e5eb1d"
+                }
+        }
+}
+
