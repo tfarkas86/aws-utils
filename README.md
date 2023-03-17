@@ -34,3 +34,5 @@ sudo ln -s <absolute path to home folder>/.aws/aws-utils/stop-ec2 /usr/local/bin
   -t: Instance type. Not required, but will change your instance type if you desire. See AWS EC2 documentation. E.g., 'r5.xlarge'.
   
  `stop-ec2` takes only the `-h` argument. 
+ 
+ Once the instance is started, you will received a message to standard out indicating the new IP address, and your `~/.ssh/config` file will be accordingly updated. Use the `ssh` command, e.g., `ssh my-ec2-name` to ssh into the running instance. 
