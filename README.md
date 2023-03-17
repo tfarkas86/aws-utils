@@ -25,7 +25,7 @@ sudo ln -s <absolute path to home folder>/.aws/aws-utils/start-ec2 /usr/local/bi
 sudo ln -s <absolute path to home folder>/.aws/aws-utils/stop-ec2 /usr/local/bin/stop-ec2
 ```
 4. Modify the scrips to contain the appropriate defaults for Host and Instance Type. 
-5. Create a file `ec2-ssh.json` that maps Instance IDs to SSH Hosts in your `.ssh` folder. Follow [the template provided](https://github.com/tfarkas86/aws-utils/blob/main/ec2-ssh.json). 
+5. Create a file `~/.aws/ec2-ssh.json` that maps Instance IDs to SSH Hosts in your `.ssh` folder. Follow [the template provided](https://github.com/tfarkas86/aws-utils/blob/main/ec2-ssh.json). 
 ### Usage
 `start-ec2` takes two arguments:  
   -h: Host. Not required if default is set in script. From your ~/.ssh/config  
