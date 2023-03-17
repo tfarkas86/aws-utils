@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+INSTANCE_ID=i-0c3f8d38432e5eb1d
+
+#STATE=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[*].Instances[*].State.Code' --output text)
+
+#if [ "$STATE" != "80" ]; then
+#  echo "Instance $INSTANCE_ID not stopped! Exiting."
+#  exit 1
+#fi
+
+aws ec2 stop-instances --instance-ids $INSTANCE_ID > /dev/null 2>&1
+echo "Stopping EC2 $INSTANCE_ID"
