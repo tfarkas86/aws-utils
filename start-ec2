@@ -17,10 +17,11 @@ done
 shift "$(($OPTIND -1))"
 
 INSTANCE_ID=$(jq --arg HOST "$HOST" '."ssh-host"[$HOST]."instance-id"' ~/.aws/ec2-ssh.json | sed -e 's/"//g')
+REGION=$(jq --arg HOST "$HOST" '."ssh-host"[$HOST]."region"' ~/.aws/ec2-ssh.json | sed -e 's/"//g')
 
 #STATE=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[*].Instances[*].State.Code' --output text)
 
-INSTANCE_ATTRS=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[*].Instances[*]' --output json)
+INSTANCE_ATTRS=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --region $REGION --query 'Reservations[*].Instances[*]' --output json)
 CURRENT_INSTANCE_TYPE=$(echo $INSTANCE_ATTRS | jq '.[0][0].InstanceType' | gsed -e 's/"//g')
 STATE=$(echo $INSTANCE_ATTRS | jq  '.[0][0].State.Code' | gsed -e 's/"//g')
 
@@ -32,17 +33,17 @@ fi
 if [ -z $INSTANCE_TYPE ]; then
   echo "Not changing instance type from $CURRENT_INSTANCE_TYPE."
 else
-  aws ec2 modify-instance-attribute --instance-id $INSTANCE_ID --instance-type "{\"Value\": \"$INSTANCE_TYPE\"}"
+  aws ec2 modify-instance-attribute --instance-id $INSTANCE_ID --instance-type --region $REGION "{\"Value\": \"$INSTANCE_TYPE\"}"
   echo "Changed instance type to $INSTANCE_TYPE."
 fi
 
-aws ec2 start-instances --instance-ids $INSTANCE_ID > /dev/null 2>&1
+aws ec2 start-instances --instance-ids $INSTANCE_ID --region $REGION > /dev/null 2>&1
 echo "Starting EC2 $INSTANCE_ID (ssh host: $HOST)"
 
 while [ -z "$IPv4" ];
 do 
     echo '...'
-    IPv4=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
+    IPv4=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --region $REGION --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
 done
 
 gsed -i '/'"$HOST"'$/{n;s/.*/  Hostname '"$IPv4/"';}' ~/.ssh/config

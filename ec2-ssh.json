@@ -1,10 +1,12 @@
 {
   "ssh-host": {
     "aws-personal": {
-      "instance-id": "i-003f8d48432e8eb1d"
+      "instance-id": "i-003f8d48432e8eb1d", 
+      "region": "us-east-1"
     },
     "aws-gpu1": {
-      "instance-id": "i-0dlkjh352j2lk3nhl"
+      "instance-id": "i-0dlkjh352j2lk3nhl", 
+      "region": "us-east-1"
     }
   }
 }
