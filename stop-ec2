@@ -2,25 +2,30 @@
 
 # defaults go here
 HOST=aws-personal
+PROFILE=AWS_DEFAULT_PROFILE
 
-while getopts 'h:' opt; do
+while getopts 'h:p:' opt; do
   case "$opt" in
     h)
       HOST="$OPTARG"
+      ;;
+    p)
+      PROFILE="$OPTARG"
       ;;
   esac
 done
 shift "$(($OPTIND -1))"
 
 INSTANCE_ID=$(jq --arg HOST "$HOST" '."ssh-host"[$HOST]."instance-id"' ~/.aws/ec2-ssh.json | sed -e 's/"//g')
+PROFILE=$(jq --arg HOST "$HOST" '."ssh-host"[$HOST]."profile"' ~/.aws/ec2-ssh.json | sed -e 's/"//g')
 REGION=$(jq --arg HOST "$HOST" '."ssh-host"[$HOST]."region"' ~/.aws/ec2-ssh.json | sed -e 's/"//g')
 
-STATE=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --region $REGION --query 'Reservations[*].Instances[*].State.Code' --output text)
+STATE=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --profile $PROFILE --region $REGION --query 'Reservations[*].Instances[*].State.Code' --output text)
 
 if [ "$STATE" != "16" ]; then
   echo "Instance $INSTANCE_ID not running! Exiting."
   exit 1
 fi
 
-aws ec2 stop-instances --instance-ids $INSTANCE_ID --region $REGION > /dev/null 2>&1
+aws ec2 stop-instances --instance-ids $INSTANCE_ID --region $REGION --profile $PROFILE > /dev/null 2>&1
 echo "Stopping EC2 $INSTANCE_ID"

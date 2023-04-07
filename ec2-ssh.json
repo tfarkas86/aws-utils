@@ -4,9 +4,10 @@
       "instance-id": "i-003f8d48432e8eb1d", 
       "region": "us-east-1"
     },
-    "aws-gpu1": {
-      "instance-id": "i-0dlkjh352j2lk3nhl", 
-      "region": "us-east-1"
+    "sso-ec2": {
+      "instance-id": "i-1g024d67596c9b9d6", 
+      "region": "us-east-1",
+      "profile": "dlc"
     }
   }
 }
