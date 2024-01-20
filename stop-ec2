@@ -16,9 +16,15 @@ while getopts 'h:p:' opt; do
 done
 shift "$(($OPTIND -1))"
 
-INSTANCE_ID=$(jq --arg HOST "$HOST" '."ssh-host"[$HOST]."instance-id"' ~/.aws/ec2-ssh.json | sed -e 's/"//g')
-PROFILE=$(jq --arg HOST "$HOST" '."ssh-host"[$HOST]."profile"' ~/.aws/ec2-ssh.json | sed -e 's/"//g')
-REGION=$(jq --arg HOST "$HOST" '."ssh-host"[$HOST]."region"' ~/.aws/ec2-ssh.json | sed -e 's/"//g')
+#INSTANCE_ID=$(jq --arg HOST "$HOST" '."ssh-host"[$HOST]."instance-id"' ~/.aws/ec2-ssh.json | sed -e 's/"//g')
+#PROFILE=$(jq --arg HOST "$HOST" '."ssh-host"[$HOST]."profile"' ~/.aws/ec2-ssh.json | sed -e 's/"//g')
+#REGION=$(jq --arg HOST "$HOST" '."ssh-host"[$HOST]."region"' ~/.aws/ec2-ssh.json | sed -e 's/"//g')
+
+# instance connect endpoint
+INSTANCE_ID=$(ssh -G $HOST | awk '$1 == "hostname" { print $2 }')
+LINES=$(awk -v h="$HOST" '/^Host/ {p = ($2 == h)} p && /^[[:space:]]*ProxyCommand/ {print $0}' ~/.ssh/config)
+PROFILE=$(echo "$LINES" | grep -o -- "--profile [^ ]*" | awk '{print $2}')
+REGION=$(echo "$LINES" | grep -o -- "--region [^ ]*" | awk '{print $2}')
 
 STATE=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --profile $PROFILE --region $REGION --query 'Reservations[*].Instances[*].State.Code' --output text)
 
